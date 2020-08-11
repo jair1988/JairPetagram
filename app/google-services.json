@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "821225413821",
+    "firebase_url": "https://animalitos-coursera.firebaseio.com",
+    "project_id": "animalitos-coursera",
+    "storage_bucket": "animalitos-coursera.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821225413821:android:e2ba2eeabb25dcb37b6bd4",
+        "android_client_info": {
+          "package_name": "com.jair.petagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821225413821-8kuktmeij2ea88l4o6lmcgomovlutd2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuKtx2V85ARHDKdpJL83B_y4mqthiskn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821225413821-8kuktmeij2ea88l4o6lmcgomovlutd2i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

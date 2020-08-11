@@ -1,0 +1,9 @@
+
+
+java:S5527J"wEnable server hostname verification on this SSL/TLS connection, by setting "mail.smtp.ssl.checkserveridentity" to true.(’ß‡ƒ
+q
+java:S1450"VRemove the "session" field and declare it as a local variable in the relevant methods.(ÔÂòáÿÿÿÿÿ
+P
+java:S1161R":Add the "@Override" annotation above this method signature(‡èú×
+|
+java:S1845!"aRename field "email" to prevent any misunderstanding/clash with field "EMAIL" defined on line 25.(ª«Õìùÿÿÿÿ
