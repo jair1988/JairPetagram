@@ -124,3 +124,13 @@ r
 Bapp/src/main/java/com/jair/petagram/restApi/ConstantesRestApi.java,b\9\b9854ad416257a780e212d92fc6398263e0fd597
 u
 Eapp/src/main/java/com/jair/petagram/firebase/NotificationService.java,9\2\92901a2e43ac00fc22723f6d6fc1f4c8f806cf82
+x
+Happ/src/main/java/com/jair/petagram/fragment/DetalleMascotaFragment.java,5\f\5f09a314dc135200b6f2b09821113070e5ec9d3f
+v
+Fapp/src/main/java/com/jair/petagram/fragment/IMascotaFragmentView.java,5\e\5e3cfec53780588cb15fd23795a9a1eba2001049
+r
+Bapp/src/main/java/com/jair/petagram/fragment/MascotasFragment.java,3\f\3f2943cdaf716da2cdb0035b346bc3c011deef34
+v
+Fapp/src/main/java/com/jair/petagram/restApi/model/UsuarioResponse.java,2\a\2a6cfafb68f253716b9dfe5105b6903e4b9e31ee
+N
+app/src/main/res/menu/menu.xml,4\5\453a7c90e2bbd5580c6bce7f2f1d9a85b2c089db
