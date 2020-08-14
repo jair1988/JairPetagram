@@ -1,4 +1,4 @@
-package com.jair.petagram.Fragment;
+package com.jair.petagram.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

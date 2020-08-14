@@ -16,9 +16,16 @@ public class RestApiAdapter {
         return retrofit.create(EndPointsApi.class);
     }
 
+    public EndPointsApi connectApiHeroku() {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(ConstantesRestApi.ROOT_URL_FIREBASE).addConverterFactory(GsonConverterFactory.create()).build();
+        return retrofit.create(EndPointsApi.class);
+    }
+
     public Gson buildDeserializerMediaRecent() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(MascotaResponse.class, new MascotaDeserialize());
         return gsonBuilder.create();
     }
+
+
 }

@@ -5,19 +5,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.jair.petagram.Fragment.DetalleMascotaFragment;
-import com.jair.petagram.Fragment.MascotasFragment;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.jair.petagram.adaptadores.PageAdapter;
+import com.jair.petagram.fragment.DetalleMascotaFragment;
+import com.jair.petagram.fragment.MascotasFragment;
+import com.jair.petagram.restApi.EndPointsApi;
+import com.jair.petagram.restApi.adapter.RestApiAdapter;
+import com.jair.petagram.restApi.model.UsuarioResponse;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_configure:
                 startActivity(new Intent(this, SettingActivity.class));
                 return true;
+            case R.id.action_notification:
+                getTokenPush();
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -78,6 +94,38 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         Objects.requireNonNull(tabLayout.getTabAt(0)).setIcon(R.drawable.ic_house);
         Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.ic_dog);
+    }
+
+    //get Token com.jair.petagram.firebase
+    private void getTokenPush() {
+        try {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                @Override
+                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Error obteniendo token", Toast.LENGTH_LONG).show();
+                    }
+                    String tokenPush = Objects.requireNonNull(task.getResult()).getToken();
+                    RestApiAdapter restApiAdapter = new RestApiAdapter();
+                    EndPointsApi endPointsApi = restApiAdapter.connectApiHeroku();
+                    Call<UsuarioResponse> usuarioResponseCall = endPointsApi.registrarToken(tokenPush);
+                    usuarioResponseCall.enqueue(new Callback<UsuarioResponse>() {
+                        @Override
+                        public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
+                            UsuarioResponse usuarioResponse = response.body();
+                            Toast.makeText(MainActivity.this, "El id generado en la BD fue " + usuarioResponse.getId() + "y el token de tu dispositivo es " + usuarioResponse.getToken(), Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<UsuarioResponse> call, Throwable t) {
+                            Toast.makeText(MainActivity.this, "Error escribiendo en Firebase", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "Error obteniendo token", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

@@ -19,5 +19,9 @@
         android:id="@+id/action_configure"
         android:title="Configurar Cuenta"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_notification"
+        android:title="Recibir Notificaciones"
+        app:showAsAction="never" />
 
 </menu>

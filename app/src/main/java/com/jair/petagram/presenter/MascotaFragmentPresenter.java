@@ -4,8 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.jair.petagram.Fragment.IMascotaFragmentView;
+import com.jair.petagram.fragment.IMascotaFragmentView;
 import com.jair.petagram.entidades.Mascota;
 import com.jair.petagram.restApi.EndPointsApi;
 import com.jair.petagram.restApi.adapter.RestApiAdapter;

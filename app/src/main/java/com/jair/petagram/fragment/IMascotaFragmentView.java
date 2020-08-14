@@ -1,4 +1,4 @@
-package com.jair.petagram.Fragment;
+package com.jair.petagram.fragment;
 
 
 import com.jair.petagram.adaptadores.AdapterMascota;
