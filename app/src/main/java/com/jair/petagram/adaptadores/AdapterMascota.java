@@ -13,12 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jair.petagram.DataBase;
+import com.jair.petagram.MainActivity;
 import com.jair.petagram.R;
 import com.jair.petagram.entidades.LikeMascota;
 import com.jair.petagram.entidades.Mascota;
+import com.jair.petagram.restApi.EndPointsApi;
+import com.jair.petagram.restApi.adapter.RestApiAdapter;
+import com.jair.petagram.restApi.model.NotificationResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterMascota extends RecyclerView.Adapter<AdapterMascota.ViewHolderMascota> {
 
@@ -46,16 +55,29 @@ public class AdapterMascota extends RecyclerView.Adapter<AdapterMascota.ViewHold
             Picasso.get().load(mascota.getFoto()).into(holder.foto);
             holder.nombre.setText(mascota.getNombre());
             holder.votos.setText(String.valueOf(dataBase.readLikes(mascota).getCantidadVotos()));
-            holder.imgHuesoBlanco.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dataBase.insertLike(new LikeMascota(mascota.getId(), 1));
-                    holder.votos.setText(String.valueOf(dataBase.readLikes(mascota).getCantidadVotos() + 1));
-                    Toast.makeText(context, "Has votado por este Perro.", Toast.LENGTH_SHORT).show();
+            holder.imgHuesoBlanco.setOnClickListener(v -> {
+                dataBase.insertLike(new LikeMascota(mascota.getId(), 1));
+                holder.votos.setText(String.valueOf(dataBase.readLikes(mascota).getCantidadVotos() + 1));
+                try {
+                    RestApiAdapter restApiAdapter = new RestApiAdapter();
+                    EndPointsApi endPointsApi = restApiAdapter.connectApiHeroku();
+                    Call<NotificationResponse> notificationResponseCall = endPointsApi.sendNotification(((MainActivity) context).tokenPush, "Has dado like al perro " + mascota.getNombre());
+                    notificationResponseCall.enqueue(new Callback<NotificationResponse>() {
+                        @Override
+                        public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                            NotificationResponse notificationResponse = response.body();
+                            Toast.makeText(context, "Respuesta notificacion enviada " + Objects.requireNonNull(notificationResponse).getMensaje(), Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                            Toast.makeText(context, "Error conectando servidor", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    Toast.makeText(context, "Error enviando notificacion", Toast.LENGTH_LONG).show();
                 }
             });
-
-
         } catch (Exception e) {
             Log.e("error;", e.getMessage());
         }

@@ -9,5 +9,6 @@ public final class ConstantesRestApi {
 
     public static final String ROOT_URL_FIREBASE = "https://peaceful-fjord-75218.herokuapp.com/";
     public static final String KEY_POST_TOKEN = "registrarUsuario/";
+    public static final String KEY_GET_SEND_NOTIFICATION = "enviarNotificacion/{token}/{mensaje}/";
 
 }
