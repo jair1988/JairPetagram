@@ -13,4 +13,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="perfil">Ver mi perfil</string>
+    <string name="follow">Seguir perfil</string>
+    <string name="user">Ver Usuario</string>
 </resources>

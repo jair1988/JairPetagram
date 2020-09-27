@@ -85,8 +85,6 @@ R
 "app/src/main/res/values/dimens.xml,c\3\c3c1811dec2dbad2deeafb9aad505ca9631da740
 b
 2app/src/main/res/values/ic_launcher_background.xml,1\8\18ccc38e5dffe10da3d8b454d3093a0a4ba78749
-S
-#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
 R
 "app/src/main/res/values/styles.xml,f\7\f79cc2688e29fcbc286fda14ae07b27c9e83690f
 >
@@ -134,3 +132,5 @@ v
 Fapp/src/main/java/com/jair/petagram/restApi/model/UsuarioResponse.java,2\a\2a6cfafb68f253716b9dfe5105b6903e4b9e31ee
 N
 app/src/main/res/menu/menu.xml,4\5\453a7c90e2bbd5580c6bce7f2f1d9a85b2c089db
+{
+Kapp/src/main/java/com/jair/petagram/restApi/model/NotificationResponse.java,0\a\0a4539774a18cb21e1b3fa6b923db8d53445bbdc
